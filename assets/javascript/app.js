@@ -1,3 +1,19 @@
+ // Your web app's Firebase configuration
+ var firebaseConfig = {
+    apiKey: "AIzaSyATyfvW4ljW1OPganzWkNMXK7F_nMgzQPQ",
+    authDomain: "fir-demo-33d93.firebaseapp.com",
+    databaseURL: "https://fir-demo-33d93.firebaseio.com",
+    projectId: "fir-demo-33d93",
+    storageBucket: "fir-demo-33d93.appspot.com",
+    messagingSenderId: "987132343245",
+    appId: "1:987132343245:web:e652b52234bf0b66c38a84",
+    measurementId: "G-P6E3L6G840"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+
+
+//test math below, with scratch variables
 //current time
 var currentTime = moment();
 console.log("Current Time: " + moment(currentTime).format("hh:mm"));
@@ -30,9 +46,9 @@ console.log("next arrival time: " + moment(t1NextArrival).format("HH:mm"))
 
 //4 arrays for names, destinations, frequency, and first arrivals
 var trainNames = [
-    "Ossious Eyes"
-    "Squee Biscuit"
-    "Tandy Pine"
+    "Ossious Eyes",
+    "Squee Biscuit",
+    "Tandy Pine",
     "C6, C6, D9#11, %, Dm7, G7"
 ];
 
@@ -48,7 +64,7 @@ var frequencies = [
     7,
     13,
     5,
-    4,
+    4
 ];
 
 //firstArrivals is expressed in HH:mm
@@ -56,9 +72,24 @@ var firstArrivals = [
     "00:01",
     "03:18",
     "1:00",
-    "04:04",
+    "04:04"
 ];
 
+console.log(trainNames)
+console.log(destinations)
+console.log(frequencies)
+console.log(firstArrivals)
+
+//function which prepairs the page and displays the contents of the arrays
+$(document).ready(function() {
+    dataManager();
+});
+
+
 //function which loops each arrray, does the math, and appends to the table.
+function dataManager() {
+    $("tbody").empty();
+    
+};
 
 //onclick function to capture the form input, add the inputs to the arrays, clears the table, and then calls the first function
