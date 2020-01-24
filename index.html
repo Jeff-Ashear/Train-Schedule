@@ -64,9 +64,27 @@
             </tbody>
           </table>
     </div>
-    <div class="form">
-        
-    </div>
+    <form>
+      <div class="row">
+        <div class="col">
+          <input type="text" class="form-control" id="trainName" placeholder="Train Name">
+        </div>
+        <div class="col">
+          <input type="text" class="form-control" id="destination" placeholder="Destination">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <input type="text" class="form-control" id="firstTrain" placeholder="First Train Time (HH:mm - military time)">
+        </div>
+        <div class="col">
+          <input type="text" class="form-control" id="frequency" placeholder="Frequency (min)">
+        </div>
+      </div>
+      <div class="text-center">
+        <button type="button" id="submitButton" class="btn btn-warning btn-lg">Add a new train</button>
+      </div>
+    </form>
 
     <script src="assets/javascript/app.js"></script>
 </body>

@@ -16,3 +16,19 @@ hr {
     height: 6px;
 }
 
+form {
+    border-style: double;
+    border-width: 6px;
+    border-color: darkorange;
+    border-radius: 6px;
+    background-color: lightslategrey;
+}
+
+.form-control {
+    margin: 10px;
+}
+
+#submitButton {
+    margin: 5px;
+    text-align: center;
+}
