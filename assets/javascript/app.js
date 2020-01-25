@@ -85,10 +85,34 @@ $(document).ready(function() {
     dataManager();
 });
 
+//function to get data from the database
+// database.ref("/nameData").on("value", function(snapshot){
 
-//function which loops each arrray, does the math, and appends to the table.
+
+// })
+
+
+
+//function which loops each arrray, does the math, pulls fromt the database, and appends to the table.
 function dataManager() {
     $("tbody").empty();
+
+    for (i = 0; i < trainNames.length; i++) {
+        var tableNames = $('<tr id="row' + [i] +'"></th><td>' + trainNames[i] + '</td>')
+        tableNames.appendTo("tbody");
+    }
+
+    for (j = 0; j < destinations.length; j++) {
+        var tableDestinations = $('<td>' + destinations[j] + '</td>');
+        tableDestinations.appendTo('#row' + [j]);
+    }
+
+    for (k = 0; k < frequencies.length; k++) {
+        var tableFrequencies = $('<tr>' + frequencies[k] + '</tr>');
+        tableFrequencies.appendTo('#row' + [k])
+    }
+
+    
     
 };
 
