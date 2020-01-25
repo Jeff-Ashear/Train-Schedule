@@ -23,11 +23,11 @@ var t1Frequency = 6;
 var t1FirstTime = "02:15";
 
 //First time minus one year to make sure it comes befoer current time
-var t1FirstTimeConverted = moment(t1FirstTime, "HH:mm").subtract(1, "years");
-console.log("1st time converted: " + t1FirstTimeConverted);
+var timeConverted = moment(t1FirstTime, "HH:mm").subtract(1, "years");
+console.log("1st time converted: " + timeConverted);
 
 //Difference between the times
-var t1DiffTime = moment().diff(moment(t1FirstTimeConverted), "minutes");
+var t1DiffTime = moment().diff(moment(timeConverted), "minutes");
 console.log("Difference in t1 time: " + t1DiffTime)
 
 //Time between arrivals
@@ -63,7 +63,7 @@ var destinations = [
 var frequencies = [
     7,
     13,
-    5,
+    3181,
     4
 ];
 
@@ -116,8 +116,21 @@ function dataManager() {
 
 
     for (l = 0; l < firstArrivals.length; l++) {
-        var tableFirstArrivals = $('<td>' + firstArrivals[l] + '</td>');
-        tableFirstArrivals.appendTo('#row' + [l])
+        timeConverted = moment(firstArrivals[l], "hh:mm").subtract(1, "years");
+        console.log("for time converted:" + timeConverted)
+        var diffTime = moment().diff(moment(timeConverted), "minutes");
+        console.log("diffTime: " + diffTime)
+        var remainder = diffTime % frequencies[l];
+        console.log("for frequencies: " + frequencies[l])
+        console.log("for remainder: " + remainder)
+        var minutesTillArrival = frequencies[l] - remainder;
+        var nextArrival = moment().add(minutesTillArrival, "minutes");
+        nextArrival = moment(nextArrival).format("HH:mm");
+        console.log('for next arrival: ' + nextArrival)
+        var tableNextArrival = $('<td>' + nextArrival + '</td>');
+        tableNextArrival.appendTo('#row' + [l]);
+        var tableMinutesTillArrival = $('<td>' + minutesTillArrival + '</td>');
+        tableMinutesTillArrival.appendTo('#row' + [l]);
     }
      
 };
