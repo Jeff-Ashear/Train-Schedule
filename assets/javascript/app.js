@@ -108,12 +108,18 @@ function dataManager() {
     }
 
     for (k = 0; k < frequencies.length; k++) {
-        var tableFrequencies = $('<tr>' + frequencies[k] + '</tr>');
-        tableFrequencies.appendTo('#row' + [k])
+        var tableFrequencies = $('<td>' + frequencies[k] + '</td>');
+        tableFrequencies.appendTo('#row' + [k]);
     }
 
     
-    
+
+
+    for (l = 0; l < firstArrivals.length; l++) {
+        var tableFirstArrivals = $('<td>' + firstArrivals[l] + '</td>');
+        tableFirstArrivals.appendTo('#row' + [l])
+    }
+     
 };
 
 //onclick function to capture the form input, add the inputs to the arrays, clears the table, and then calls the first function
