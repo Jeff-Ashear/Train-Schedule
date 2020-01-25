@@ -135,4 +135,19 @@ function dataManager() {
      
 };
 
-//onclick function to capture the form input, add the inputs to the arrays, clears the table, and then calls the first function
+//onclick function to capture the form input, add the inputs to the arrays, and then calls the first function
+$("#submitButton").on("click", function(event) {
+    event.preventDefault();
+    console.log("form CLICK-y-Clickerson")
+    var trainNameInput = $("#trainName").val().trim();
+    console.log("trainName input: " + trainNameInput)
+    trainNames.push(trainNameInput)
+    console.log("click array test: " + trainNames)
+    var destinationsInput = $("#destination").val().trim();
+    destinations.push(destinationsInput)
+    var firstTrainInput = $("#firstTrain").val().trim();
+    firstArrivals.push(firstTrainInput) 
+    var frequencyInput = $("#frequency").val().trim();
+    frequencies.push(frequencyInput)
+    dataManager()
+})
