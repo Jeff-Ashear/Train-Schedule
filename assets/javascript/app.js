@@ -46,16 +46,16 @@ console.log("next arrival time: " + moment(t1NextArrival).format("HH:mm"))
 
 //4 arrays for names, destinations, frequency, and first arrivals
 var trainNames = [
-    "Ossious Eyes",
+    "Chuchu Cthulhu",
     "Squee Biscuit",
-    "Tandy Pine",
+    "Tandy Train",
     "C6, C6, D9#11, %, Dm7, G7"
 ];
 
 var destinations = [
-    "The Underverse",
+    "R'lyeh",
     "Booklyn",
-    "Post Appocalypse",
+    "Pilbasia",
     "Ellingtonia"
 ];
 
@@ -69,7 +69,7 @@ var frequencies = [
 
 //firstArrivals is expressed in HH:mm
 var firstArrivals = [
-    "00:01",
+    "19:28",
     "03:18",
     "1:00",
     "04:04"
