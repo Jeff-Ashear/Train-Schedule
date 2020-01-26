@@ -62,21 +62,25 @@ $("#submitButton").on("click", function(event) {
     event.preventDefault();
     console.log("submitBtn click")
 
-    //store values from the form:
-    trainNames = $("#trainName").val().trim();
-    destinations = $("#destination").val().trim();
-    frequencies = $("#frequency").val().trim();
-    firstArrivals = $("#firstTrain").val().trim();
+    
 
-    console.log("click values: " + trainNames, destinations, frequencies, firstArrivals)
+        //store values from the form:
+        trainNames = $("#trainName").val().trim();
+        destinations = $("#destination").val().trim();
+        frequencies = $("#frequency").val().trim();
+        firstArrivals = $("#firstTrain").val().trim();
 
-    //push values to the database:
-    database.ref().push({
-        trainNamesDB: trainNames,
-        destinationsDB: destinations,
-        frequenciesDB: frequencies,
-        firstArrivalsDB: firstArrivals
-    });
+        console.log("click values: " + trainNames, destinations, frequencies, firstArrivals)
+
+        //push values to the database:
+        database.ref().push({
+            trainNamesDB: trainNames,
+            destinationsDB: destinations,
+            frequenciesDB: frequencies,
+            firstArrivalsDB: firstArrivals
+        });
+
+        document.getElementById("trainForm").reset();
 
 });
 
@@ -113,6 +117,7 @@ database.ref().on("child_added", function(snapshot) {
     //and finally update the table html
 
     var tableRow = $('<tr id="row' + snapval.trainNamesDB + '"></th><td>' + snapval.trainNamesDB + '</td><td>' + snapval.destinationsDB + '</td><td>' + snapval.frequenciesDB + '</td><td>' + moment(nextArrival).format("HH:mm") + '</td><td>' + minutesUntilArrival + '<tr>')
+
     tableRow.appendTo("tbody");
 
     // var tableDestinations = $('')
