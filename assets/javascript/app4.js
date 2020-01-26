@@ -70,17 +70,23 @@ $("#submitButton").on("click", function(event) {
 
     console.log("click values: " + trainNames, destinations, frequencies, firstArrivals)
 
+    //checks db to allow only new entries
+    database.ref().on("value", function(snapshot){
 
-    //push values to the database:
-    database.ref().push({
-        trainNamesDB: trainNames,
-        destinationsDB: destinations,
-        frequenciesDB: frequencies,
-        firstArrivalsDB: firstArrivals
+        if (snapshot.child(trainNames).exists() && snapshot.child(destinations) && snapshot.child(frequencies).exists() && snapshot.child(firstArrivals).exists()) {
+            alert("That train is already scheduled.");
+        } else {
+            //push values to the database:
+            database.ref().push({
+                trainNamesDB: trainNames,
+                destinationsDB: destinations,
+                frequenciesDB: frequencies,
+                firstArrivalsDB: firstArrivals
+            });
+
+            document.getElementById("trainForm").reset();
+        }
     });
-
-    document.getElementById("trainForm").reset();
-       
 });
 
 //function to watch firbase for new data and change the html
