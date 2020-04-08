@@ -1,4 +1,4 @@
- // Your web app's Firebase configuration
+// Your web app's Firebase configuration
  var firebaseConfig = {
     apiKey: "AIzaSyATyfvW4ljW1OPganzWkNMXK7F_nMgzQPQ",
     authDomain: "fir-demo-33d93.firebaseapp.com",
@@ -8,11 +8,11 @@
     messagingSenderId: "987132343245",
     appId: "1:987132343245:web:e652b52234bf0b66c38a84",
     measurementId: "G-P6E3L6G840"
-  };
+};
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
 
-
+var seconds = 60;
 //test math below, with scratch variables
 //current time
 var currentTime = moment();
@@ -115,10 +115,17 @@ database.ref().on("child_added", function(snapshot) {
     
     //and finally update the table html
 
-    var tableRow = $('<tr id="row' + snapval.trainNamesDB + '"></th><td>' + snapval.trainNamesDB + '</td><td>' + snapval.destinationsDB + '</td><td>' + snapval.frequenciesDB + '</td><td>' + moment(nextArrival).format("HH:mm") + '</td><td>' + minutesUntilArrival + '<tr>')
+    function updateTimes(){
+        var tableRow = $('<tr id="row' + snapval.trainNamesDB + '"></th><td>' + snapval.trainNamesDB + '</td><td>' + snapval.destinationsDB + '</td><td>' + snapval.frequenciesDB + '</td><td>' + moment(nextArrival).format("HH:mm") + '</td><td>' + minutesUntilArrival + '<tr>')
+        
+        tableRow.appendTo("tbody");
+    };
+    updateTimes();
 
-    tableRow.appendTo("tbody");
-
-    // var tableDestinations = $('')
     
+    
+   setInterval(function(){
+       $("tbody").empty();
+       updateTimes();
+   }, 60000);
 });
