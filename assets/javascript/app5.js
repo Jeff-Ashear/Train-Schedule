@@ -111,21 +111,25 @@ database.ref().on("child_added", function(snapshot) {
 
     //time next train arrives
     var nextArrival = moment().add(minutesUntilArrival, "minutes");
-    console.log("next arrival time: " + moment(nextArrival).format("HH:mm"))
+    console.log("next arrival time: " + moment(nextArrival).format("HH:mm"));
     
     //and finally update the table html
 
     function updateTimes(){
-        var tableRow = $('<tr id="row' + snapval.trainNamesDB + '"></th><td>' + snapval.trainNamesDB + '</td><td>' + snapval.destinationsDB + '</td><td>' + snapval.frequenciesDB + '</td><td>' + moment(nextArrival).format("HH:mm") + '</td><td>' + minutesUntilArrival + '<tr>')
+        var tableRow = $('<tr id="row' + snapval.trainNamesDB + '"></th><td>' + snapval.trainNamesDB + '</td><td>' + snapval.destinationsDB + '</td><td>' + snapval.frequenciesDB + '</td><td>' + moment(nextArrival).format("HH:mm") + '</td><td>' + minutesUntilArrival + '</td><td><button class="deleteBtn" id="' + snapval.trainNamesDB + '">Delete</button></td></tr>');
         
         tableRow.appendTo("tbody");
     };
     updateTimes();
-
-    
-    
-   setInterval(function(){
-       $("tbody").empty();
-       updateTimes();
-   }, 60000);
+   
+    $(document).on("click", ".deleteBtn", function (event) {
+        event.preventDefault();
+        console.log("Delete button clicked.")
+        trainName = $(this).find("id").text();
+        console.log(trainName)
+    });
+//    setInterval(function(){
+//        $("tbody").empty();
+//        updateTimes();
+//    }, 60000);
 });
