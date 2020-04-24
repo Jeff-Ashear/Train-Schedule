@@ -126,7 +126,8 @@ database.ref().on("child_added", function(snapshot) {
         event.preventDefault();
         console.log("Delete button clicked.")
         trainName = $(this).find("id").text();
-        console.log(trainName)
+        console.log("train name: " + trainName)
+        console.log(this)
     });
 //    setInterval(function(){
 //        $("tbody").empty();
