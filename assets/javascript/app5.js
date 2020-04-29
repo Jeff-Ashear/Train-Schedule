@@ -1,5 +1,5 @@
 // Your web app's Firebase configuration
- var firebaseConfig = {
+var firebaseConfig = {
     apiKey: "AIzaSyATyfvW4ljW1OPganzWkNMXK7F_nMgzQPQ",
     authDomain: "fir-demo-33d93.firebaseapp.com",
     databaseURL: "https://fir-demo-33d93.firebaseio.com",
@@ -9,8 +9,8 @@
     appId: "1:987132343245:web:e652b52234bf0b66c38a84",
     measurementId: "G-P6E3L6G840"
 };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
 
 var seconds = 60;
 //test math below, with scratch variables
@@ -58,7 +58,7 @@ var frequencies = "";
 var firstArrivals = "";
 
 //function to push values to the database:
-$("#submitButton").on("click", function(event) {
+$("#submitButton").on("click", function (event) {
     event.preventDefault();
     console.log("submitBtn click")
 
@@ -80,11 +80,11 @@ $("#submitButton").on("click", function(event) {
     });
 
     document.getElementById("trainForm").reset();
-       
+
 });
 
 //function to watch firbase for new data and change the html
-database.ref().on("child_added", function(snapshot) {
+database.ref().on("child_added", function (snapshot) {
     //variable for the snapshot value
     var snapval = snapshot.val();
 
@@ -112,25 +112,34 @@ database.ref().on("child_added", function(snapshot) {
     //time next train arrives
     var nextArrival = moment().add(minutesUntilArrival, "minutes");
     console.log("next arrival time: " + moment(nextArrival).format("HH:mm"));
-    
+
     //and finally update the table html
 
-    function updateTimes(){
-        var tableRow = $('<tr id="row' + snapval.trainNamesDB + '"></th><td>' + snapval.trainNamesDB + '</td><td>' + snapval.destinationsDB + '</td><td>' + snapval.frequenciesDB + '</td><td>' + moment(nextArrival).format("HH:mm") + '</td><td>' + minutesUntilArrival + '</td><td><button class="deleteBtn" id="' + snapval.trainNamesDB + '">Delete</button></td></tr>');
-        
+    function updateTimes() {
+        var tableRow = $('<tr id="row' + snapval.trainNamesDB + '"></th><td>' + snapval.trainNamesDB + '</td><td>' + snapval.destinationsDB + '</td><td>' + snapval.frequenciesDB + '</td><td>' + moment(nextArrival).format("HH:mm") + '</td><td class="waitTime">' + minutesUntilArrival + '</td><td><button class="deleteBtn" id="' + snapval.trainNamesDB + '">Delete</button></td></tr>');
+
         tableRow.appendTo("tbody");
     };
     updateTimes();
-   
-    $(document).on("click", ".deleteBtn", function (event) {
+
+    // function updateWait() {
+    //     for (i = 0; i < snapval.trainNamesDB.length; i++) {
+    //         $(".waitTime").text(minutesUntilArrival);
+    //     }
+    // }
+
+    $(".deleteBtn").on("click", function (event) {
         event.preventDefault();
         console.log("Delete button clicked.")
         trainName = $(this).find("id").text();
         console.log("train name: " + trainName)
         console.log(this)
     });
-//    setInterval(function(){
-//        $("tbody").empty();
-//        updateTimes();
-//    }, 60000);
-});
+
+
+//     function to update the time remaining before each train arrives.
+//         setInterval(function () {
+//             $(".waitTime").empty();
+//             updateWait();
+//         }, 60000);
+// });
